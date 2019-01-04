@@ -81,7 +81,7 @@
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
-#define STRING_CONFIG_H_AUTHOR "(3D Rapid, Max Grundler, 1.1.9/TMC/PIDBED/MBL)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(wattie, BLTouch based on Max Grundler 1.1.9/TMC/PIDBED/MBL)" // Who made the changes.
 #define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
 //#define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
@@ -700,7 +700,7 @@
  * Use G29 repeatedly, adjusting the Z height at each point with movement commands
  * or (with LCD_BED_LEVELING) the LCD controller.
  */
-#define PROBE_MANUALLY 
+//#define PROBE_MANUALLY 
 //#define MANUAL_PROBE_START_Z 0.2
 
 /**
@@ -718,7 +718,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+#define BLTOUCH
 #if ENABLED(BLTOUCH)
   //#define BLTOUCH_DELAY 375   // (ms) Enable and increase if needed
 #endif
@@ -839,15 +839,15 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false //(TMC)
-#define INVERT_Y_DIR true //(TMC)
-#define INVERT_Z_DIR true // (TMC) 
+#define INVERT_X_DIR true //(TMC)
+#define INVERT_Y_DIR false //(TMC)
+#define INVERT_Z_DIR false // (TMC) 
 
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true // (TMC)
-#define INVERT_E1_DIR true // (TMC)
+#define INVERT_E0_DIR false // (TMC)
+#define INVERT_E1_DIR false // (TMC)
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
 #define INVERT_E4_DIR false
@@ -966,9 +966,9 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-//#define AUTO_BED_LEVELING_BILINEAR
+#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
-#define MESH_BED_LEVELING 
+//#define MESH_BED_LEVELING 
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
@@ -1011,7 +1011,7 @@
 #if ENABLED(AUTO_BED_LEVELING_LINEAR) || ENABLED(AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_X 4
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).

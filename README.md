@@ -1,3 +1,38 @@
+﻿# Anycubic i3 Mega Marlin 1.1.9 by wattie2k1
+
+This is my version of Marlin firmware for the Anycubic i3 Mega. It has been modified to be able to use a BLTouch sensor for automatic bed leveling. This version is based on https://github.com/Blackcombify/3DRapidMarlin1.1.9-TMC
+
+## How to level your bed with a BLTouch sensor
+
+At first meassure the offset of the nozzle:
+
+- [`G28`] to set the nozzle at home
+- [`G90`] to turn on absolute positioning
+- [`G1 Z10`] move the nozzle up for 10mm
+- [`G1 X40 Y40 F4000`] move the nozzle to x40 y40
+- [`M280 P0 S10`] will activate the BLTouch pin
+- [`G91`] to turn on relative positioning
+- Now move the nozzle down with [`G1 Z-1`] or [`G1 Z-0.1`] until the BLTouch sensor is activated.
+- acknowledge the BLTouch with [`M280 P0 S160`]
+- [`M114`] will display the current position of the nozzle, remember the position of z value.
+- [`G90`] turn on absolute positioning
+- [`G1 X72 Y64 F4000`] move the nozzle to x72 y64
+- [`G91`] turn on relative positioning
+- Now use a thin piece of paper like you would use on manual leveling and place it under the nozzle. Use [`G1 Z-0.1`] to move the nozzle down. Do it until the nozzle touches the paper but can still be lightly moved.
+- [`M114`] will display the current position again. Now substract the current z value from the z value we determined before. This is the offset value we need to use at the next step. 
+- [`M851 Z-<Offset>`], replace <offset> with the value you detrmined in the step before (e.g. 1.2)
+- [`M500`] will store the settings to EEprom
+
+This only has to be done once, it should be done again if you changes are done to the bed itself.
+
+- Heat up your bed
+- [`G28`] to set the nozzle at home position
+- [`G29`] starts the automatic bed leveling	
+- [`M500`] stores the values to EEprom
+
+Bed leveling is done at this point, the only thing left to do is make sure you enabled using the measured bed level point by using M420 S1 in your start script. Simply set this command after G28.
+
+
 # Marlin 3D Printer Firmware
 <img align="right" src="../../raw/1.1.x/buildroot/share/pixmaps/logo/marlin-250.png" />
 
