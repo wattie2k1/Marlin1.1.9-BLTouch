@@ -599,7 +599,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 96.2 } //adjust Steps specific to your Mashine @MaxGrundler
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 384.8 } //steps updated for Mega-S Upgrade
 
 /**
  * Default Max Feed Rate (mm/s)
